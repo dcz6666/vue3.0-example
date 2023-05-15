@@ -1,0 +1,36 @@
+$block-sel: "-" !default;
+$element-sel: "__" !default;
+$modifier-sel: "--" !default;
+$namespace:'xm' !default;
+
+
+@mixin bfc {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+//block
+@mixin b($block) {
+  $B: #{$namespace + $block-sel + $block};
+  .#{$B} {
+    @content;
+  }
+}
+
+@mixin e($el) {
+  $selector: &;
+  @at-root {
+    #{$selector +  $element-sel  + $el} {
+      @content;
+    }
+  }
+}
+
+@mixin m($m) {
+  $selector: &;
+  @at-root {
+    #{$selector + $modifier-sel + $m} {
+      @content;
+    }
+  }
+}
